@@ -1,10 +1,12 @@
 import Button from "./components/Button";
 
+import './global.css'
+
 function App() {
   return (
-    <>
-      <Button color="success" />
-    </>
+    <main>
+      <Button color="primary" />
+    </main>
   )
 }
 
