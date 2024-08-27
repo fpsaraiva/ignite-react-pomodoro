@@ -1,21 +1,10 @@
 .button {
     width: 100px;
     height: 40px;
-}
+    border-radius: 4px;
+    border: 0;
+    margin: 8px;
 
-.primary {
-    background-color: #8284fa;
-    color: #FFF
-}
-
-.secondary {
-    background-color: orange
-}
-
-.danger {
-    background-color: red
-}
-
-.success {
-    background-color: green 
+    background-color: var(--green-500);
+    color: var(--white);
 }
