@@ -1,12 +1,14 @@
-import Button from "./components/Button";
+import { BrowserRouter } from "react-router-dom"
+
+import Router from './Router'
 
 import './global.css'
 
 function App() {
   return (
-    <main>
-      <Button color="primary" />
-    </main>
+   <BrowserRouter>
+    <Router />
+   </BrowserRouter>
   )
 }
 
