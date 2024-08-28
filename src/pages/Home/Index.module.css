@@ -13,6 +13,38 @@
     gap: 3.5rem;
 }
 
+.baseInput {
+    background: transparent;
+    height: 2.5rem;
+    border: 0;
+    border-bottom: 2px solid var(--gray-500);
+    font-weight: bold;
+    font-size: 1.125rem;
+    padding: 0 0.5rem;
+    color: var(--gray-100);
+}
+
+.baseInput:focus {
+    box-shadow: none;
+    border-color: var(--green-500);
+}
+
+.baseInput::placeholder {
+    color: var(--gray-500);
+}
+
+.taskInput {
+    flex: 1;
+}
+
+.taskInput::-webkit-calendar-picker-indicator {
+    display: none !important;
+}
+
+.minutesAmountInput {
+    width: 4rem;
+}
+
 .formContainer {
     width: 100%;
     display: flex;
@@ -48,4 +80,29 @@
     overflow: hidden;
     display: flex;
     justify-content: center;
+}
+
+.buttonContainer {
+    width: 100%;
+    border: 0;
+    padding: 1rem;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-weight: bold;
+    cursor: pointer;
+
+    background: var(--green-500);
+    color: var(--gray-100);
+}
+
+.buttonContainer:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.buttonContainer:not(:disabled):hover {
+    background: var(--green-700);
 }
