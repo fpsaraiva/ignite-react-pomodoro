@@ -1,27 +1,30 @@
-import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 import { Play } from "phosphor-react";
 
 import styles from "./Index.module.css";
 
 function Home() {
-  const [task, setTask] = useState("");
+  const { register, handleSubmit, watch } = useForm();
 
-  function handleSubmit(event) {}
+  function handleCreateNewCycle(data: any) {
+    console.log(data);
+  }
+
+  const task = watch("task");
+  const isSubmitDisable = !task;
 
   return (
     <main className={styles.homeContainer}>
-      <form action="" onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit(handleCreateNewCycle)}>
         <div className={styles.formContainer}>
           <label htmlFor="task">Vou trabalhar em</label>
           <input
             className={`${styles.baseInput} ${styles.taskInput}`}
             id="task"
-            name="task"
             list="task-suggestions"
             placeholder="Dê um nome para o seu projeto"
-            onChange={(e) => setTask(e.target.value)}
-            value={task}
+            {...register("task")}
           />
 
           <datalist id="task-suggestions">
@@ -38,6 +41,7 @@ function Home() {
             id="minutesAmount"
             min={1}
             max={60}
+            {...register("minutesAmount", { valueAsNumber: true })}
           />
 
           <span>minutos.</span>
@@ -52,9 +56,9 @@ function Home() {
         </div>
 
         <button
-          type="button"
+          type="submit"
           className={styles.buttonContainer}
-          disabled={!task}
+          disabled={isSubmitDisable}
         >
           <Play size={24} />
           Começar
