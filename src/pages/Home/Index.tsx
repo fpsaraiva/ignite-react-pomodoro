@@ -1,18 +1,27 @@
+import { useState } from "react";
+
 import { Play } from "phosphor-react";
 
 import styles from "./Index.module.css";
 
 function Home() {
+  const [task, setTask] = useState("");
+
+  function handleSubmit(event) {}
+
   return (
     <main className={styles.homeContainer}>
-      <form action="">
+      <form action="" onSubmit={handleSubmit}>
         <div className={styles.formContainer}>
           <label htmlFor="task">Vou trabalhar em</label>
           <input
             className={`${styles.baseInput} ${styles.taskInput}`}
             id="task"
+            name="task"
             list="task-suggestions"
             placeholder="Dê um nome para o seu projeto"
+            onChange={(e) => setTask(e.target.value)}
+            value={task}
           />
 
           <datalist id="task-suggestions">
@@ -42,7 +51,11 @@ function Home() {
           <span>0</span>
         </div>
 
-        <button type="button" className={styles.buttonContainer}>
+        <button
+          type="button"
+          className={styles.buttonContainer}
+          disabled={!task}
+        >
           <Play size={24} />
           Começar
         </button>
