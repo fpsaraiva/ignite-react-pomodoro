@@ -58,3 +58,29 @@
 .historyList table td :last-child {
     padding-right: 1.5rem;
 }
+
+
+.status {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.status::before {
+    content: '';
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+}
+
+.statusColorGreen::before {
+    background: var(--green-500);
+}
+
+.statusColorYellow::before {
+    background: var(--yellow-500);
+}
+
+.statusColorRed::before {
+    background: var(--red-500);
+}
