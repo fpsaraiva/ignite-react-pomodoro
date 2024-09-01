@@ -4,7 +4,7 @@ import * as zod from "zod";
 import { useEffect, useState } from "react";
 import { differenceInSeconds } from "date-fns";
 
-import { Play } from "phosphor-react";
+import { HandPalm, Play } from "phosphor-react";
 
 import styles from "./Index.module.css";
 
@@ -23,6 +23,7 @@ interface Cycle {
   task: string;
   minutesAmount: number;
   startDate: Date;
+  interruptedDate?: Date;
 }
 
 function Home() {
@@ -72,6 +73,19 @@ function Home() {
     reset();
   }
 
+  function handleInterruptCycle() {
+    setCycles(
+      cycles.map((cycle) => {
+        if (cycle.id === activeCycleId) {
+          return { ...cycle, interruptedDate: new Date() };
+        } else {
+          return cycle;
+        }
+      })
+    );
+    setActiveCycleId(null);
+  }
+
   const totalSeconds = activeCycle ? activeCycle.minutesAmount * 60 : 0;
   const currentSeconds = activeCycle ? totalSeconds - amountSecondsPassed : 0;
 
@@ -100,6 +114,7 @@ function Home() {
             id="task"
             list="task-suggestions"
             placeholder="Dê um nome para o seu projeto"
+            disabled={!!activeCycle}
             {...register("task")}
           />
 
@@ -117,6 +132,7 @@ function Home() {
             id="minutesAmount"
             min={1}
             max={60}
+            disabled={!!activeCycle}
             {...register("minutesAmount", { valueAsNumber: true })}
           />
 
@@ -131,14 +147,25 @@ function Home() {
           <span>{seconds[1]}</span>
         </div>
 
-        <button
-          type="submit"
-          className={styles.buttonContainer}
-          disabled={isSubmitDisable}
-        >
-          <Play size={24} />
-          Começar
-        </button>
+        {activeCycle ? (
+          <button
+            type="button"
+            className={`${styles.buttonContainer} ${styles.stopButtonContainer}`}
+            onClick={handleInterruptCycle}
+          >
+            <HandPalm size={24} />
+            Interromper
+          </button>
+        ) : (
+          <button
+            type="submit"
+            className={`${styles.buttonContainer} ${styles.startButtonContainer}`}
+            disabled={isSubmitDisable}
+          >
+            <Play size={24} />
+            Começar
+          </button>
+        )}
       </form>
     </main>
   );

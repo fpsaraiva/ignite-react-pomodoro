@@ -94,7 +94,6 @@
     font-weight: bold;
     cursor: pointer;
 
-    background: var(--green-500);
     color: var(--gray-100);
 }
 
@@ -103,6 +102,18 @@
     cursor: not-allowed;
 }
 
-.buttonContainer:not(:disabled):hover {
+.startButtonContainer {
+    background: var(--green-500);
+}
+
+.startButtonContainer:not(:disabled):hover {
     background: var(--green-700);
+}
+
+.stopButtonContainer {
+    background: var(--red-500);
+}
+
+.stopButtonContainer:not(:disabled):hover {
+    background: var(--red-700);
 }
