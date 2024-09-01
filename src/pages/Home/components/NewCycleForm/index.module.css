@@ -1,0 +1,44 @@
+
+.baseInput {
+    background: transparent;
+    height: 2.5rem;
+    border: 0;
+    border-bottom: 2px solid var(--gray-500);
+    font-weight: bold;
+    font-size: 1.125rem;
+    padding: 0 0.5rem;
+    color: var(--gray-100);
+}
+
+.baseInput:focus {
+    box-shadow: none;
+    border-color: var(--green-500);
+}
+
+.baseInput::placeholder {
+    color: var(--gray-500);
+}
+
+.taskInput {
+    flex: 1;
+}
+
+.taskInput::-webkit-calendar-picker-indicator {
+    display: none !important;
+}
+
+.minutesAmountInput {
+    width: 4rem;
+}
+
+.formContainer {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: var(--gray-100);
+    font-size: 1.125rem;
+    font-weight: bold;
+    flex-wrap: wrap;
+}
