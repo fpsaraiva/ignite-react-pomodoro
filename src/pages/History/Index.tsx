@@ -10,8 +10,6 @@ function History() {
     <main className={styles.historyContainer}>
       <h1>Meu histórico</h1>
 
-      <pre>{JSON.stringify(cycles, null, 2)}</pre>
-
       <div className={styles.historyList}>
         <table>
           <thead>
@@ -23,68 +21,40 @@ function History() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Tarefa</td>
-              <td>28 minutos</td>
-              <td>Há cerca de 2 meses</td>
-              <td>
-                <span className={`${styles.status} ${styles.statusColorGreen}`}>
-                  Concluído
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <td>Tarefa</td>
-              <td>28 minutos</td>
-              <td>Há cerca de 2 meses</td>
-              <td>
-                <span className={`${styles.status} ${styles.statusColorGreen}`}>
-                  Concluído
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <td>Tarefa</td>
-              <td>28 minutos</td>
-              <td>Há cerca de 2 meses</td>
-              <td>
-                <span
-                  className={`${styles.status} ${styles.statusColorYellow}`}
-                >
-                  Concluído
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <td>Tarefa</td>
-              <td>28 minutos</td>
-              <td>Há cerca de 2 meses</td>
-              <td>
-                <span className={`${styles.status} ${styles.statusColorGreen}`}>
-                  Concluído
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <td>Tarefa</td>
-              <td>28 minutos</td>
-              <td>Há cerca de 2 meses</td>
-              <td>
-                <span className={`${styles.status} ${styles.statusColorGreen}`}>
-                  Concluído
-                </span>
-              </td>
-            </tr>
-            <tr>
-              <td>Tarefa</td>
-              <td>28 minutos</td>
-              <td>Há cerca de 2 meses</td>
-              <td>
-                <span className={`${styles.status} ${styles.statusColorRed}`}>
-                  Concluído
-                </span>
-              </td>
-            </tr>
+            {cycles.map((cycle) => {
+              return (
+                <tr key={cycle.id}>
+                  <td>{cycle.task}</td>
+                  <td>{cycle.minutesAmount} minutos</td>
+                  <td>{cycle.startDate.toISOString()}</td>
+                  <td>
+                    {cycle.finishedDate && (
+                      <span
+                        className={`${styles.status} ${styles.statusColorGreen}`}
+                      >
+                        Concluído
+                      </span>
+                    )}
+
+                    {cycle.interruptedDate && (
+                      <span
+                        className={`${styles.status} ${styles.statusColorRed}`}
+                      >
+                        Interrompido
+                      </span>
+                    )}
+
+                    {!cycle.finishedDate && !cycle.interruptedDate && (
+                      <span
+                        className={`${styles.status} ${styles.statusColorYellow}`}
+                      >
+                        Em andamento
+                      </span>
+                    )}
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>
