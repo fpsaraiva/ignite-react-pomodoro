@@ -1,15 +1,12 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { differenceInSeconds } from "date-fns";
+import { CyclesContext } from "../../Index";
 
 import styles from "./index.module.css";
 
-interface CountdownProps {
-  activeCycle: any;
-  setCycles: any;
-  activeCycleId: any;
-}
-
-function Countdown({ activeCycle, setCycles, activeCycleId }: CountdownProps) {
+function Countdown() {
+  const { activeCycle, activeCycleId, markCurrentCycleAsFinished } =
+    useContext(CyclesContext);
   const [amountSecondsPassed, setAmountSecondsPassed] = useState(0);
 
   const totalSeconds = activeCycle ? activeCycle.minutesAmount * 60 : 0;
@@ -25,15 +22,7 @@ function Countdown({ activeCycle, setCycles, activeCycleId }: CountdownProps) {
         );
 
         if (secondsDifference >= totalSeconds) {
-          setCycles((state) =>
-            state.map((cycle) => {
-              if (cycle.id === activeCycleId) {
-                return { ...cycle, finishedDate: new Date() };
-              } else {
-                return cycle;
-              }
-            })
-          );
+          markCurrentCycleAsFinished();
 
           setAmountSecondsPassed(totalSeconds);
           clearInterval(interval);
@@ -47,6 +36,20 @@ function Countdown({ activeCycle, setCycles, activeCycleId }: CountdownProps) {
       clearInterval(interval);
     };
   }, [activeCycle, totalSeconds, activeCycleId]);
+
+  const currentSeconds = activeCycle ? totalSeconds - amountSecondsPassed : 0;
+
+  const minutesAmount = Math.floor(currentSeconds / 60);
+  const secondsAmount = currentSeconds % 60;
+
+  const minutes = String(minutesAmount).padStart(2, "0");
+  const seconds = String(secondsAmount).padStart(2, "0");
+
+  useEffect(() => {
+    if (activeCycle) {
+      document.title = `${minutes}:${seconds}`;
+    }
+  }, [minutes, seconds, activeCycle]);
 
   return (
     <div className={styles.countdownContainer}>
