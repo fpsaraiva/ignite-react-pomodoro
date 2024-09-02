@@ -1,9 +1,16 @@
+import { useContext } from "react";
+import { CyclesContext } from "../../contexts/CyclesContext";
+
 import styles from "./Index.module.css";
 
 function History() {
+  const { cycles } = useContext(CyclesContext);
+
   return (
     <main className={styles.historyContainer}>
       <h1>Meu histórico</h1>
+
+      <pre>{JSON.stringify(cycles, null, 2)}</pre>
 
       <div className={styles.historyList}>
         <table>

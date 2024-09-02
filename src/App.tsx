@@ -1,15 +1,20 @@
-import { BrowserRouter } from "react-router-dom"
+import { BrowserRouter } from "react-router-dom";
 
-import Router from './Router'
+import Router from "./Router";
+import { CyclesContextProvider } from "./contexts/CyclesContext";
 
-import './global.css'
+import "./global.css";
+
+<Router />;
 
 function App() {
   return (
-   <BrowserRouter>
-    <Router />
-   </BrowserRouter>
-  )
+    <BrowserRouter>
+      <CyclesContextProvider>
+        <Router />
+      </CyclesContextProvider>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
