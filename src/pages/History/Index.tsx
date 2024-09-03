@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { CyclesContext } from "../../contexts/CyclesContext";
 import { formatDistanceToNow } from "date-fns";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { formatDistance, ptBR } from "date-fns/locale/pt-BR";
 
 import styles from "./Index.module.css";
