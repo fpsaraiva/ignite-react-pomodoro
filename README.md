@@ -14,6 +14,15 @@ A time management method that uses a timer to break work into intervals, traditi
 - **Task Management**: Add multiple cycles to keep track of what you're working on.
 - **Progress Tracking**: Visualize your progress with a simple and clean UI.
 
+## Stack
+
+- JavaScript
+- TypeScript
+- React
+- CSS Modules
+
+Originally, the project was built using styled components. I have used CSS Modules to challenge myself and learn more about it.
+
 ## Getting started
 
 ### Prerequisites
